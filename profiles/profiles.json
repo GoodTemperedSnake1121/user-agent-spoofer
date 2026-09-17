@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "profiles": [
+    {
+      "id": "firefox-linux",
+      "name": "Firefox — Linux",
+      "browser": "Firefox",
+      "os": "Linux",
+      "device": "Desktop",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64; rv:142.0) Gecko/20100101 Firefox/142.0",
+      "appVersion": "5.0 (X11; Linux x86_64; rv:142.0) Gecko/20100101 Firefox/142.0",
+      "appName": "Netscape",
+      "platform": "Linux x86_64",
+      "vendor": "",
+      "product": "Gecko"
+    },
+    {
+      "id": "firefox-windows",
+      "name": "Firefox — Windows",
+      "browser": "Firefox",
+      "os": "Windows",
+      "device": "Desktop",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:142.0) Gecko/20100101 Firefox/142.0",
+      "appVersion": "5.0 (Windows NT 10.0; Win64; x64; rv:142.0) Gecko/20100101 Firefox/142.0",
+      "appName": "Netscape",
+      "platform": "Win32",
+      "vendor": "",
+      "product": "Gecko"
+    },
+    {
+      "id": "chrome-windows",
+      "name": "Chrome — Windows",
+      "browser": "Chrome",
+      "os": "Windows",
+      "device": "Desktop",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "appVersion": "5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "appName": "Netscape",
+      "platform": "Win32",
+      "vendor": "Google Inc.",
+      "product": "Gecko"
+    },
+    {
+      "id": "chrome-linux",
+      "name": "Chrome — Linux",
+      "browser": "Chrome",
+      "os": "Linux",
+      "device": "Desktop",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "appVersion": "5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "appName": "Netscape",
+      "platform": "Linux x86_64",
+      "vendor": "Google Inc.",
+      "product": "Gecko"
+    }
+  ]
+}
