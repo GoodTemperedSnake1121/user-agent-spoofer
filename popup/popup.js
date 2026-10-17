@@ -12,6 +12,7 @@ const deviceInfo = document.getElementById("deviceInfo");
 const versionInfo = document.getElementById("versionInfo");
 
 let profiles = [];
+let lastRandomProfileId = null;
 let curlClicks = 0;
 let secretUnlocked = false;
 
@@ -85,6 +86,48 @@ if (curlClicks >= 4) {
 
 }
 
+async function chooseRandomProfile() {
+    // Random selection uses the bundled profile database only.
+    // Custom and secret entries are not part of that database.
+    const eligibleProfiles = profiles.filter(function(profile) {
+        return Boolean(profile && profile.id && profile.userAgent);
+    });
+
+    if (eligibleProfiles.length === 0) {
+        statusText.textContent = "No eligible profiles are available.";
+        return;
+    }
+
+    let choices = eligibleProfiles;
+
+    // Prefer a different profile when Random is selected repeatedly.
+    if (eligibleProfiles.length > 1 && lastRandomProfileId) {
+        const alternatives = eligibleProfiles.filter(function(profile) {
+            return profile.id !== lastRandomProfileId;
+        });
+        if (alternatives.length > 0) {
+            choices = alternatives;
+        }
+    }
+
+    const selected = choices[Math.floor(Math.random() * choices.length)];
+    lastRandomProfileId = selected.id;
+
+    // Show the concrete profile selected, not the Random command.
+    profileSelect.value = selected.id;
+    userAgentBox.value = selected.userAgent || "";
+    showInfo(selected);
+
+    // Apply immediately, as requested by the feature proposal.
+    await browser.storage.local.set({
+        profile: selected,
+        userAgent: selected.userAgent
+    });
+
+    statusText.textContent = "🎲 Randomly selected and applied: " +
+        (selected.name || selected.id);
+}
+
 function selectProfile() {
 const selected = profiles.find(function(profile) {
 return profile.id === profileSelect.value;
@@ -127,6 +170,11 @@ if (!Array.isArray(data.profiles)) {
 profiles = data.profiles;
 
 profileSelect.innerHTML = "";
+
+const randomOption = document.createElement("option");
+randomOption.value = "__random__";
+randomOption.textContent = "🎲 Random User-Agent";
+profileSelect.appendChild(randomOption);
 
 const groups = new Map();
 
@@ -173,8 +221,9 @@ custom.textContent =
 
 profileSelect.appendChild(custom);
 
-if (profileSelect.options.length > 0) {
-    profileSelect.selectedIndex = 0;
+if (profileSelect.options.length > 1) {
+    // Keep the initial selection on a real profile, not the Random command.
+    profileSelect.selectedIndex = 1;
     selectProfile();
 }
 
@@ -183,7 +232,12 @@ if (profileSelect.options.length > 0) {
 
 profileSelect.addEventListener(
 "change",
-function() {
+async function() {
+if (profileSelect.value === "__random__") {
+    await chooseRandomProfile();
+    return;
+}
+
 if (profileSelect.value === "**custom**") {
 showInfo(null);
 
