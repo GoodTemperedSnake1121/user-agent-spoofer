@@ -1,0 +1,51 @@
+name: 💡 Feature Request
+description: Suggest an improvement or new feature for Firespoof.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Have an idea for Firespoof? 💡
+
+        Tell us what you'd like to see and how it would help.
+
+  - type: textarea
+    id: feature
+    attributes:
+      label: What would you like?
+      description: Clearly describe the feature or improvement.
+      placeholder: "I would like Firespoof to..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Why would this be useful?
+      description: Describe the problem this feature would solve or the use case it would support.
+      placeholder: "This would be useful because..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Suggested implementation
+      description: If you have an idea for how it could work, describe it here.
+      placeholder: "One possible way to implement this would be..."
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What do you currently do instead?
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I have searched existing Issues and Discussions for similar requests.
+          required: true
