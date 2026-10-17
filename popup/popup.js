@@ -238,7 +238,7 @@ if (profileSelect.value === "__random__") {
     return;
 }
 
-if (profileSelect.value === "**custom**") {
+if (profileSelect.value === "__custom__") {
 showInfo(null);
 
 
@@ -321,7 +321,7 @@ searchBox.value
 customUserAgentBox.addEventListener(
 "input",
 function() {
-if (profileSelect.value === "**custom**") {
+if (profileSelect.value === "__custom__") {
 userAgentBox.value =
 customUserAgentBox.value;
 }
@@ -368,10 +368,10 @@ customUserAgentBox.value.trim();
 applyButton.addEventListener(
 "click",
 async function() {
-if (profileSelect.value === "**secret**") {
+if (profileSelect.value === "__secret__") {
 await browser.storage.local.set({
 profile: {
-id: "**secret**",
+id: "__secret__",
 name: "secret",
 browser: "secret",
 os: "secret",
